@@ -1,6 +1,6 @@
 <?php
 
-namespace Bdsm;
+namespace Bdsm\Command;
 
 final class DownOne
 {

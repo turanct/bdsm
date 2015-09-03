@@ -1,11 +1,14 @@
 <?php
 
-namespace Bdsm;
+namespace Bdsm\Command;
 
+use Bdsm\Locater;
+use Bdsm\Log;
+use Bdsm\Database;
 use Bdsm\Exception\MigrationDoesNotExist;
-use Bdsm\Exception\MigrationAlreadyRan;
+use Bdsm\Exception\MigrationDidNotRunYet;
 
-final class UpOneHandler
+final class DownOneHandler
 {
     private $locater;
     private $log;
@@ -21,7 +24,7 @@ final class UpOneHandler
         $this->database = $database;
     }
 
-    public function handle(UpOne $command)
+    public function handle(DownOne $command)
     {
         $migrationId = $command->migrationId;
 
@@ -29,11 +32,15 @@ final class UpOneHandler
             throw new MigrationDoesNotExist($migrationId);
         }
 
-        if (array_key_exists($migrationId, $this->log->get()) === true) {
-            throw new MigrationAlreadyRan($migrationId);
+        $log = $this->log->get();
+        if (
+            array_key_exists($migrationId, $log) === false
+            || $log[$migrationId] === 'skipped'
+        ) {
+            throw new MigrationDidNotRunYet($migrationId);
         }
 
         $migration = $this->locater->get($migrationId);
-        $migration->up($this->database);
+        $migration->down($this->database);
     }
 }

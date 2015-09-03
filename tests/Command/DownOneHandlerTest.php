@@ -1,6 +1,6 @@
 <?php
 
-namespace Bdsm;
+namespace Bdsm\Command;
 
 class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
 {

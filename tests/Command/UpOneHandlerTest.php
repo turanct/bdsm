@@ -1,6 +1,6 @@
 <?php
 
-namespace Bdsm;
+namespace Bdsm\Command;
 
 class UpOneHandlerTest extends \PHPUnit_Framework_TestCase
 {
