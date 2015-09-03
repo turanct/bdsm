@@ -14,7 +14,8 @@ final class Up extends Command
 {
     protected $commandHandler;
 
-    public function __construct($name, CommandBus $commandHandler) {
+    public function __construct($name, CommandBus $commandHandler)
+    {
         parent::__construct($name);
 
         $this->commandHandler = $commandHandler;
@@ -25,8 +26,7 @@ final class Up extends Command
         $this
             ->setName('up')
             ->setDescription('Migrate UP.')
-            ->addArgument('migration-id', InputArgument::OPTIONAL, 'Only run a given migration', null)
-        ;
+            ->addArgument('migration-id', InputArgument::OPTIONAL, 'Only run a given migration', null);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -56,5 +56,3 @@ final class Up extends Command
         }
     }
 }
-
-
