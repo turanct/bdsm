@@ -39,6 +39,8 @@ final class DownAllHandler
             }
 
             $migration->down($this->database);
+
+            $this->log->drop($migrationId);
         }
     }
 }

@@ -42,5 +42,7 @@ final class DownOneHandler
 
         $migration = $this->locater->get($migrationId);
         $migration->down($this->database);
+
+        $this->log->drop($migrationId);
     }
 }

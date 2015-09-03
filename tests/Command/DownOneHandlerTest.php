@@ -58,15 +58,12 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
         $handler->handle($downone);
     }
 
-    /**
-     * @expectedException Exception
-     */
     function test_it_runs_the_down_migration()
     {
         $migration = $this->getMockBuilder('\\Bdsm\\Migration')->getMock();
         $migration
-            ->method('down')
-            ->will($this->throwException(new \Exception('it works')));
+            ->expects($this->once())
+            ->method('down');
 
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater
@@ -82,6 +79,10 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
         $log->method('get')->willReturn(array(
             'Foo' => 'done',
         ));
+        $log
+            ->expects($this->once())
+            ->method('drop')
+            ->with($this->equalTo('Foo'));
 
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
 

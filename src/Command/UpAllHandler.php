@@ -36,6 +36,8 @@ final class UpAllHandler
             }
 
             $migration->up($this->database);
+
+            $this->log->set($migrationId, 'done');
         }
     }
 }

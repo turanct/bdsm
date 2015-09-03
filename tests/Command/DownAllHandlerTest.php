@@ -21,6 +21,13 @@ class DownAllHandlerTest extends \PHPUnit_Framework_TestCase
             'Bdsm\\Command\\FirstDownMigration' => 'done',
             'Bdsm\\Command\\SecondDownMigration' => 'done',
         ));
+        $log
+            ->expects($this->exactly(2))
+            ->method('drop')
+            ->withConsecutive(
+                $this->equalTo('Bdsm\\Command\\FirstDownMigration'),
+                $this->equalTo('Bdsm\\Command\\SecondDownMigration')
+            );
 
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
         $database
@@ -46,6 +53,10 @@ class DownAllHandlerTest extends \PHPUnit_Framework_TestCase
             'Bdsm\\Command\\FirstDownMigration' => 'done',
             'Bdsm\\Command\\SkippedDownMigration' => 'skipped',
         ));
+        $log
+            ->expects($this->once())
+            ->method('drop')
+            ->with($this->equalTo('Bdsm\\Command\\FirstDownMigration'));
 
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
         $database

@@ -40,15 +40,12 @@ class UpOneHandlerTest extends \PHPUnit_Framework_TestCase
         $handler->handle($upone);
     }
 
-    /**
-     * @expectedException Exception
-     */
     function test_it_runs_the_up_migration()
     {
         $migration = $this->getMockBuilder('\\Bdsm\\Migration')->getMock();
         $migration
-            ->method('up')
-            ->will($this->throwException(new \Exception('it works')));
+            ->expects($this->once())
+            ->method('up');
 
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater
@@ -62,6 +59,10 @@ class UpOneHandlerTest extends \PHPUnit_Framework_TestCase
 
         $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
         $log->method('get')->willReturn(array());
+        $log
+            ->expects($this->once())
+            ->method('set')
+            ->with('Foo', 'done');
 
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
 

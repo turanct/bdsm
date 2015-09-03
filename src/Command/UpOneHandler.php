@@ -38,5 +38,7 @@ final class UpOneHandler
 
         $migration = $this->locater->get($migrationId);
         $migration->up($this->database);
+
+        $this->log->set($migrationId, 'done');
     }
 }
