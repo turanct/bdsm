@@ -1,0 +1,28 @@
+{
+    "name": "turanct/bdsm",
+    "description": "BDSM Does Simple Migrations",
+    "type": "application",
+    "homepage": "http://github.com/turanct/bdsm",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Toon Daelman",
+            "email": "spinnewebber_toon@hotmail.com",
+            "homepage": "http://turanct.wordpress.com",
+            "role": "Developer"
+        }
+    ],
+    "bin": ["bin/bdsm"],
+    "require-dev": {
+        "zerkalica/phpcs": "dev-master",
+        "phpunit/phpunit": "^4.8.6"
+    },
+    "config": {
+        "bin-dir": "sbin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bdsm\\": "src/"
+        }
+    }
+}
