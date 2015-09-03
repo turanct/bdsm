@@ -9,7 +9,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
      */
     function test_it_throws_when_given_migration_not_found()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(false);
 
         $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
@@ -25,7 +25,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
      */
     function test_it_throws_when_migration_did_not_run_yet()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(true);
 
         $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
@@ -43,7 +43,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
      */
     function test_it_throws_when_migration_was_skipped()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(true);
 
         $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
@@ -68,7 +68,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('down')
             ->will($this->throwException(new \Exception('it works')));
 
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater
             ->method('has')
             ->with($this->equalTo('Foo'))

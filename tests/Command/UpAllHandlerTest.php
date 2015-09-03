@@ -10,7 +10,7 @@ class UpAllHandlerTest extends \PHPUnit_Framework_TestCase
 {
     function test_it_runs_multiple_migrations()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('findMigrations')->willReturn(array(
             new FirstMigration,
             new SecondMigration,
@@ -31,7 +31,7 @@ class UpAllHandlerTest extends \PHPUnit_Framework_TestCase
 
     function test_it_skips_done_and_skipped_migrations()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('findMigrations')->willReturn(array(
             new DoneMigration,
             new SkippedMigration,

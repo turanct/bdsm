@@ -1,6 +1,6 @@
 <?php
 
-namespace Bdsm;
+namespace Bdsm\Locater;
 
 interface Locater
 {

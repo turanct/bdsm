@@ -2,7 +2,7 @@
 
 namespace Bdsm\Command;
 
-use Bdsm\Locater;
+use Bdsm\Locater\Locater;
 use Bdsm\Log;
 use Bdsm\Database;
 

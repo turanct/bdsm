@@ -10,7 +10,7 @@ class DownAllHandlerTest extends \PHPUnit_Framework_TestCase
 {
     function test_it_runs_multiple_migrations()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('findMigrations')->willReturn(array(
             new FirstDownMigration,
             new SecondDownMigration,
@@ -34,7 +34,7 @@ class DownAllHandlerTest extends \PHPUnit_Framework_TestCase
 
     function test_it_skips_not_done_and_skipped_migrations()
     {
-        $locater = $this->getMockBuilder('\\Bdsm\\Locater')->getMock();
+        $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('findMigrations')->willReturn(array(
             new NotDoneDownMigration,
             new SkippedDownMigration,
