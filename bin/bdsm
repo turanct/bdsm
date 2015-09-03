@@ -1,0 +1,57 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console as Console;
+
+if (is_file($autoload = getcwd() . '/vendor/autoload.php')) {
+    require $autoload;
+} elseif (is_file($autoload = getcwd() . '/../../autoload.php')) {
+    require $autoload;
+}
+
+if (is_file($autoload = __DIR__ . '/../vendor/autoload.php')) {
+    require($autoload);
+} elseif (is_file($autoload = __DIR__ . '/../../../autoload.php')) {
+    require($autoload);
+} else {
+    fwrite(STDERR,
+        'You must set up the project dependencies, run the following commands:' . PHP_EOL .
+        'curl -s http://getcomposer.org/installer | php' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL
+    );
+    exit(1);
+}
+
+list($migrationsDirectory, $logFile, $database) = require_once getcwd() . '/.bdsm.php';
+
+$locater = new Bdsm\Locater\DirectoryLocater($migrationsDirectory);
+$log = new Bdsm\Log\JsonLog($logFile);
+
+$commandBus = new Bdsm\Command\CommandBus();
+$commandBus->register(
+    'Bdsm\\Command\\DownAll',
+    new Bdsm\Command\DownAllHandler($locater, $log, $database)
+);
+$commandBus->register(
+    'Bdsm\\Command\\DownOne',
+    new Bdsm\Command\DownOneHandler($locater, $log, $database)
+);
+$commandBus->register(
+    'Bdsm\\Command\\UpAll',
+    new Bdsm\Command\UpAllHandler($locater, $log, $database)
+);
+$commandBus->register(
+    'Bdsm\\Command\\UpOne',
+    new Bdsm\Command\UpOneHandler($locater, $log, $database)
+);
+
+
+// Initialize the application
+$application = new Console\Application('BDSM', '0.0.1');
+
+// Add application related commands
+$application->add(new Bdsm\Cli\Up('up', $commandBus));
+$application->add(new Bdsm\Cli\Down('down', $commandBus));
+
+// Run
+$application->run();
