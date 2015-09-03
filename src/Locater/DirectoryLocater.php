@@ -23,7 +23,7 @@ final class DirectoryLocater implements Locater
         $files = glob($this->directory . '/*.php');
 
         $instances = array_map(
-            function($file) {
+            function ($file) {
                 require_once $file;
 
                 $classname = basename($file, '.php');
