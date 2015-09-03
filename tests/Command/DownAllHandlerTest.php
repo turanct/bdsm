@@ -16,7 +16,7 @@ class DownAllHandlerTest extends \PHPUnit_Framework_TestCase
             new SecondDownMigration,
         ));
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array(
             'Bdsm\\Command\\FirstDownMigration' => 'done',
             'Bdsm\\Command\\SecondDownMigration' => 'done',
@@ -48,7 +48,7 @@ class DownAllHandlerTest extends \PHPUnit_Framework_TestCase
             new FirstDownMigration,
         ));
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array(
             'Bdsm\\Command\\FirstDownMigration' => 'done',
             'Bdsm\\Command\\SkippedDownMigration' => 'skipped',

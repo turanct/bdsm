@@ -16,7 +16,7 @@ class UpAllHandlerTest extends \PHPUnit_Framework_TestCase
             new SecondMigration,
         ));
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array());
         $log
             ->expects($this->exactly(2))
@@ -45,7 +45,7 @@ class UpAllHandlerTest extends \PHPUnit_Framework_TestCase
             new FirstMigration,
         ));
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array(
             'Bdsm\\Command\\DoneMigration' => 'done',
             'Bdsm\\Command\\SkippedMigration' => 'skipped',

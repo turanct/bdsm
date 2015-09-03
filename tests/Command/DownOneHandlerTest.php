@@ -12,7 +12,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(false);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
 
         $downone = new DownOne('Foo');
@@ -28,7 +28,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(true);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array());
 
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
@@ -46,7 +46,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(true);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array(
             'Foo' => 'skipped',
         ));
@@ -75,7 +75,7 @@ class DownOneHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo('Foo'))
             ->willReturn($migration);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array(
             'Foo' => 'done',
         ));

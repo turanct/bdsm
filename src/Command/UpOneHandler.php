@@ -3,7 +3,7 @@
 namespace Bdsm\Command;
 
 use Bdsm\Locater\Locater;
-use Bdsm\Log;
+use Bdsm\Log\Log;
 use Bdsm\Database;
 use Bdsm\Exception\MigrationDoesNotExist;
 use Bdsm\Exception\MigrationAlreadyRan;

@@ -12,7 +12,7 @@ class UpOneHandlerTest extends \PHPUnit_Framework_TestCase
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(false);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $database = $this->getMockBuilder('\\Bdsm\\Database')->getMock();
 
         $upone = new UpOne('Foo');
@@ -28,7 +28,7 @@ class UpOneHandlerTest extends \PHPUnit_Framework_TestCase
         $locater = $this->getMockBuilder('\\Bdsm\\Locater\\Locater')->getMock();
         $locater->method('has')->willReturn(true);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array(
             'Foo' => 'done',
         ));
@@ -57,7 +57,7 @@ class UpOneHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo('Foo'))
             ->willReturn($migration);
 
-        $log = $this->getMockBuilder('\\Bdsm\\Log')->getMock();
+        $log = $this->getMockBuilder('\\Bdsm\\Log\\Log')->getMock();
         $log->method('get')->willReturn(array());
         $log
             ->expects($this->once())
