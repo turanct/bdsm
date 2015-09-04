@@ -48,6 +48,7 @@ $commandBus->register(
     'Bdsm\\Command\\NewMigration',
     new Bdsm\Command\NewMigrationHandler($migrationsDirectory)
 );
+$statusQuery = new Bdsm\Query\Status($locater, $log);
 
 
 // Initialize the application
@@ -57,6 +58,7 @@ $application = new Console\Application('BDSM', '0.0.1');
 $application->add(new Bdsm\Cli\Up('up', $commandBus));
 $application->add(new Bdsm\Cli\Down('down', $commandBus));
 $application->add(new Bdsm\Cli\Create('create', $commandBus));
+$application->add(new Bdsm\Cli\Status('status', $statusQuery));
 
 // Run
 $application->run();
