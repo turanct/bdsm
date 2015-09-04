@@ -3,7 +3,7 @@ BDSM Does Simple Migrations
 
 [![Travis CI](https://api.travis-ci.org/turanct/bdsm.svg?branch=master)](https://travis-ci.org/turanct/bdsm)
 
-A really simple migrations library.
+A really simple migrations library. It is currently *not meant to be used in production* but nobody's going to stop you if you really want to. Use at your own risk.
 
 
 Usage
