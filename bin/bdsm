@@ -44,6 +44,10 @@ $commandBus->register(
     'Bdsm\\Command\\UpOne',
     new Bdsm\Command\UpOneHandler($locater, $log, $database)
 );
+$commandBus->register(
+    'Bdsm\\Command\\NewMigration',
+    new Bdsm\Command\NewMigrationHandler($migrationsDirectory)
+);
 
 
 // Initialize the application
@@ -52,6 +56,7 @@ $application = new Console\Application('BDSM', '0.0.1');
 // Add application related commands
 $application->add(new Bdsm\Cli\Up('up', $commandBus));
 $application->add(new Bdsm\Cli\Down('down', $commandBus));
+$application->add(new Bdsm\Cli\Create('create', $commandBus));
 
 // Run
 $application->run();
