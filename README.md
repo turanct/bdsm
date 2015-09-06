@@ -116,7 +116,7 @@ Tests
 BDSM has unit tests, located in the `tests` directory. These tests are written using phpunit. To run them, make sure you did a `composer install` and run phpunit.
 
 ```sh
-$ bin/phpunit
+$ sbin/phpunit
 ```
 
 
